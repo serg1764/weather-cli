@@ -18,6 +18,25 @@ const saveToken = async (token) => {
         printError(e.message);
     }
 }
+
+const getForcast  = async () => {
+    try {
+        const weather = await getWeather('мерсин');
+        console.log(weather);// красивый вывод погоды
+    }
+    catch(e){
+        if(e.message === 'Cannot read properties of undefined (reading \'lat\')'){
+            printError('Неверно указан город');
+        }
+        else if(e?.response?.status === 401){
+            printError('Неверно указан Токен');
+        }
+        else{
+            printError(e.message);
+        }
+    }
+}
+
 const initCLI = () => {
     const args = getArgs(process.argv);
     //console.log(process.env);
@@ -31,7 +50,7 @@ const initCLI = () => {
         //Сохранить токен
         return saveToken(args.t);
     }
-    getWeather('Mersin');
+    getForcast();
 }
 
 initCLI();
