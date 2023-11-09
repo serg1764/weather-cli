@@ -17,4 +17,18 @@ const printHelp = () => {
     );
 }
 
-export { printError, printSuccess, printHelp };
+const printCity = (message) => {
+    console.log(`${chalk.bgBlue(' '+message+' ')}`);
+}
+
+const printDescription = (message) => {
+    console.log(`${chalk.bgBlueBright(' '+message+' ')}`);
+}
+const printOther = (message) => {
+    console.log(`${chalk.bgRed(' ТЕМПЕРАТУРА МАКСИМАЛЬНАЯ ')} ${message.main.temp_max}`);
+    console.log(`${chalk.bgBlueBright(' ТЕМПЕРАТУРА МИНИМАЛьНАЯ ')} ${message.main.temp_min}`);
+    console.log(`${chalk.bgMagentaBright(' ВОСХОД ')} ${new Date(message.sys.sunrise * 1000)}`);
+    console.log(`${chalk.bgYellowBright(' ЗАКАТ ')} ${new Date(message.sys.sunset * 1000)}`);
+}
+
+export { printError, printSuccess, printHelp, printCity, printDescription, printOther };
